@@ -2,11 +2,10 @@ package com.api_estoque.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity
-@Table (name = "movimentacoes")
+@Table(name="movimentacoes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,12 +15,12 @@ public class Movimentacoes {
     private Long movimentacao_id;
 
     @Column (nullable = false)
-    private String tipoMovimentacao;
+    private String tipo_movimentacao;
 
     @Column (nullable = false)
     private Integer quantidade;
 
-    @Column (nullable = false)
+    @Column (nullable = true)
     private LocalDate data;
 
     @Column (nullable = true)

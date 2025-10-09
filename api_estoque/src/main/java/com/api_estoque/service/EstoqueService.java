@@ -5,8 +5,6 @@ import com.api_estoque.repository.EstoqueRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import java.util.*;
 
 @Service
@@ -45,6 +43,7 @@ public class EstoqueService {
             estoque.setQuantidadeEstoque(produtoAtualizado.getQuantidadeEstoque());
             estoque.setCategoria(produtoAtualizado.getCategoria());
             estoque.setFornecedor(produtoAtualizado.getFornecedor());
+            return estoqueRepository.save(estoque);
         }
         throw new RuntimeException("Livro não encontrado");
     }

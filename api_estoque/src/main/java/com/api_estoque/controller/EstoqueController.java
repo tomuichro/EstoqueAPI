@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
 
 @RestController
@@ -16,21 +15,22 @@ public class EstoqueController {
     private EstoqueService estoqueService;
 
     //GET
-    @GetMapping
     //listar todos os produtos
+    @GetMapping
     public ResponseEntity<List<Estoque>> listarEstoque() {
         List<Estoque> produtos = estoqueService.listarEstoque();
         return new ResponseEntity<>(produtos, HttpStatus.OK);
     }
 
-    @GetMapping("/{produto_id}")
     //buscar um produto por id
+    @GetMapping("/{produto_id}")
     public ResponseEntity<Estoque> buscarProduto(@PathVariable Long produto_id) {
         Estoque estoque = estoqueService.buscarProduto(produto_id);
         return ResponseEntity.ok(estoque);
     }
 
     //POST
+    //cadastrar um produto
     @PostMapping
     public ResponseEntity<Estoque> cadastrarProduto(@RequestBody Estoque estoque) {
         Estoque produtoCadastrado = estoqueService.cadastrarProduto(estoque);
@@ -38,6 +38,7 @@ public class EstoqueController {
     }
 
     //PUT
+    //atualizar produto
     @PutMapping("/{produto_id}")
     public ResponseEntity<Estoque> atualizarProduto(@PathVariable Long produto_id, @RequestBody Estoque produtoAtualizado) {
         try {
@@ -48,7 +49,9 @@ public class EstoqueController {
         }
     }
 
+
     //DELETE
+    //deletar produto
     @DeleteMapping("/{produto_id}")
     public ResponseEntity<Void> deletarProduto(@PathVariable Long produto_id) {
         estoqueService.deletarProduto(produto_id);
